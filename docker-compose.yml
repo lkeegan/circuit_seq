@@ -15,6 +15,8 @@ services:
     volumes:
       - ${SAMPLE_FLOW_SSL_CERT:-./cert.pem}:/sample_flow_ssl_cert.pem
       - ${SAMPLE_FLOW_SSL_KEY:-./key.pem}:/sample_flow_ssl_key.pem
+      # to allow certbot to renew SSL certificates:
+      - /var/www/certbot:/var/www/certbot:ro
   email:
     image: "boky/postfix"
     environment:
