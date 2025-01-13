@@ -34,13 +34,10 @@ sudo docker-compose logs
 
 ### Renew SSL certificate
 
-Certbot attempts to auto-renew but this requires port 80, which is already taken by our web server.
-To update the certificate manually:
+To create or renew the SSL certificates using Certbot (this can be ran as a cron job):
 
 ```
-sudo docker-compose down
-sudo certbot renew
-sudo docker-compose up -d
+sudo docker run -it --rm -v/etc/letsencrypt:/etc/letsencrypt -v/var/www/certbot:/var/www/certbot certbot/certbot certonly --webroot --webroot-path /var/www/certbot/ -n -d circuitseq.iwr.uni-heidelberg.de
 ```
 
 ### Give users admin rights
